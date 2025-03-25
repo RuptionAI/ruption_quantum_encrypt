@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":["decapsulate","derive_keys","encapsulate","keypair"],"struct":["Ciphertext","PublicKey","SecretKey","SharedSecret","TrueRandom"]};

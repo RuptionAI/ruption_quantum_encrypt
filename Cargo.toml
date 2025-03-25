@@ -1,6 +1,6 @@
 [package]
 name = "ruption_quantum_encrypt"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "A quantum-secure encryption crate with hybrid lattice/code-based cryptography and true randomness"
 authors = ["Ruption AI <jeff@ruption.ai>"]

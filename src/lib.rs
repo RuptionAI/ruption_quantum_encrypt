@@ -1,13 +1,13 @@
 use getrandom::getrandom;
-use sha3::digest::{ExtendableOutput, Update};
 use sha3::{Digest, Sha3_256, Shake256};
+use sha3::digest::{Update, ExtendableOutput};
 use std::io::Read;
 use std::thread;
-use std::time::{Duration, Instant};
+use std::time::{Instant, Duration};
 
 // Toy parameters for demonstration; scale up for real security
-const LATTICE_DIM: usize = 256; // Lattice dimension (use 2048+ for billion-qubit resistance)
-const CODE_LENGTH: usize = 512; // Code length (use 8192+ for extreme security)
+const LATTICE_DIM: usize = 256;  // Lattice dimension (use 2048+ for billion-qubit resistance)
+const CODE_LENGTH: usize = 512;  // Code length (use 8192+ for extreme security)
 
 /// Public key for the quantum-secure encryption scheme.
 ///
@@ -23,8 +23,8 @@ pub struct PublicKey {
 /// Contains private data for lattice and code-based decryption.
 /// This is a toy version; scale parameters for real-world security.
 pub struct SecretKey {
-    _lattice_secret: Vec<u8>, // Lattice private key, unused in toy version
-    _code_secret: Vec<u8>,    // Code private key, unused in toy version
+    _lattice_secret: Vec<u8>,      // Lattice private key, unused in toy version
+    _code_secret: Vec<u8>,         // Code private key, unused in toy version
 }
 
 /// Ciphertext produced during key encapsulation.
@@ -32,8 +32,8 @@ pub struct SecretKey {
 /// Holds encrypted data from both lattice and code-based components.
 /// In practice, this would result from proper cryptographic operations.
 pub struct Ciphertext {
-    lattice_cipher: Vec<u8>, // Lattice-based ciphertext
-    code_cipher: Vec<u8>,    // Code-based ciphertext
+    lattice_cipher: Vec<u8>,      // Lattice-based ciphertext
+    code_cipher: Vec<u8>,         // Code-based ciphertext
 }
 
 /// Shared secret derived during encapsulation.
@@ -63,7 +63,7 @@ impl SharedSecret {
 /// assert_eq!(random_bytes.len(), 32);
 /// ```
 pub struct TrueRandom {
-    entropy_pool: Vec<u8>, // Pool of collected entropy
+    entropy_pool: Vec<u8>,        // Pool of collected entropy
 }
 
 impl TrueRandom {
@@ -100,8 +100,7 @@ impl TrueRandom {
         let mut state = now as u64;
 
         for _ in 0..16 {
-            state ^= state
-                .wrapping_add(self.entropy_pool[state as usize % self.entropy_pool.len()] as u64);
+            state ^= state.wrapping_add(self.entropy_pool[state as usize % self.entropy_pool.len()] as u64);
             sim_entropy.push((state & 0xFF) as u8);
         }
         sim_entropy
